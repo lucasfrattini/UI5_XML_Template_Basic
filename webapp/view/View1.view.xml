@@ -8,21 +8,23 @@
 					<!--aliasing the annotation helper-->
 					<template:alias name=".AH" value="sap.ui.model.odata.AnnotationHelper">
 						<template:with path="meta>com.sap.vocabularies.UI.v1.FieldGroup#General" var="fieldGroup">
-							<smartForm:SmartForm>
-								<smartForm:layout>
-									<smartForm:Layout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
-										columnsXL="1" columnsL="1" columnsM="1"></smartForm:Layout>
-								</smartForm:layout>
-								<smartForm:Group label="{path:'fieldGroup>Label',formatter:'.AH.format'}">
-									<template:with path="fieldGroup>Data" var="data">
-										<template:repeat list="{data>}">
-											<smartForm:GroupElement>
-												<smartField:SmartField value="{path:'data>Value',formatter:'.AH.simplePath'}"/>
-											</smartForm:GroupElement>
-										</template:repeat>
-									</template:with>
-								</smartForm:Group>
-							</smartForm:SmartForm>
+							<template:if test="{meta>com.sap.vocabularies.UI.v1.FieldGroup#General}">
+								<smartForm:SmartForm>
+									<smartForm:layout>
+										<smartForm:Layout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+											columnsXL="1" columnsL="1" columnsM="1"></smartForm:Layout>
+									</smartForm:layout>
+									<smartForm:Group label="{path:'fieldGroup>Label',formatter:'.AH.format'}">
+										<template:with path="fieldGroup>Data" var="data">
+											<template:repeat list="{data>}">
+												<smartForm:GroupElement>
+													<smartField:SmartField value="{path:'data>Value',formatter:'.AH.simplePath'}"/>
+												</smartForm:GroupElement>
+											</template:repeat>
+										</template:with>
+									</smartForm:Group>
+								</smartForm:SmartForm>
+							</template:if>
 						</template:with>
 					</template:alias>
 				</content>
